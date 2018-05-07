@@ -2,7 +2,6 @@ import urllib.request, os, time
 
 data = (urllib.request.urlopen(('https://' + str(input('')))))
 data = data.read()
-nd = ''
 
 file = open('website_retrived.html', 'w')
 file.write(str(data))
