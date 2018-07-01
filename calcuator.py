@@ -41,9 +41,9 @@ class calculator():
         elif line == 3: calculator.line3 = str(calculator.line3) + str(character)
         calculator.main()
     def clear(line):
-        if line == 1: calculator.line1 = ''
-        elif line == 2: calculator.line2 = ''
-        elif line == 3: calculator.line3 = ''
+        calculator.line1 = ''
+        calculator.line2 = ''
+        calculator.line3 = ''
         calculator.main()
     def trim(line):
         if line == 1: calculator.line1 = trim(str(calculator.line1))
@@ -90,17 +90,17 @@ class calculator():
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '3', command = lambda: calculator.appendC('3', calculator.focus)).place(x = 75, y = 335)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '.', command = lambda: calculator.appendC('.', calculator.focus)).place(x = 5, y = 365)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '0', command = lambda: calculator.appendC('0', calculator.focus)).place(x = 40, y = 365)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '-', command = lambda: calculator.appendC('-', calculator.focus)).place(x = 75, y = 365)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '+', command = lambda: calculator.appendC('+', calculator.focus)).place(x = 110, y = 275)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '^', command = lambda: calculator.appendC('**', calculator.focus)).place(x = 110, y = 305)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '/', command = lambda: calculator.appendC('/', calculator.focus)).place(x = 110, y = 335)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '*', command = lambda: calculator.appendC('*', calculator.focus)).place(x = 110, y = 365)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '-', command = lambda: calculator.appendC(' - ', calculator.focus)).place(x = 75, y = 365)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '+', command = lambda: calculator.appendC(' + ', calculator.focus)).place(x = 110, y = 275)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '^', command = lambda: calculator.appendC(' ** ', calculator.focus)).place(x = 110, y = 305)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '/', command = lambda: calculator.appendC(' / ', calculator.focus)).place(x = 110, y = 335)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = '*', command = lambda: calculator.appendC(' * ', calculator.focus)).place(x = 110, y = 365)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'abs', command = lambda: calculator.appendC('abs(', calculator.focus)).place(x = 145, y = 215)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'sin', command = lambda: calculator.appendC('sin(', calculator.focus)).place(x = 145, y = 245)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'cos', command = lambda: calculator.appendC('cos(', calculator.focus)).place(x = 145, y = 275)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'tan', command = lambda: calculator.appendC('tan(', calculator.focus)).place(x = 145, y = 305)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'ord', command = lambda: calculator.appendC('ord(', calculator.focus)).place(x = 145, y = 335)
-        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'chr', command = lambda: calculator.appendC('chr(', calculator.focus)).place(x = 145, y = 365)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'pi', command = lambda: calculator.appendC('3.141592653589793', calculator.focus)).place(x = 145, y = 335)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'sqrt', command = lambda: calculator.appendC('sqrt(', calculator.focus)).place(x = 145, y = 365)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'green', activeforeground = 'white', width = 5, borderwidth = 0, command = lambda: calculator.solve(), text = 'SOLVE').place(x = 250, y = 365)
         Canvas(base, highlightthickness = 0, bg = 'gray80', width = 290, height = 200).place(x = 5, y = 395)
         
