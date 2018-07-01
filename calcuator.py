@@ -29,7 +29,7 @@ class calculator():
     focus = 1
     def solve():
         try: exec(str('calculator.line2 = ' + str(calculator.line1)))
-        except IOError: calculator.line2 = 'ERROR'
+        except: calculator.line2 = 'ERROR'
         calculator.main()
     def screenset(screen):
         calculator.focus = 1
