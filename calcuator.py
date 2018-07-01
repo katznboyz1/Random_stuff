@@ -28,7 +28,9 @@ class calculator():
     screen = 'main'
     focus = 1
     def solve():
-        pass
+        try: exec(str('calculator.line2 = ' + str(calculator.line1)))
+        except IOError: calculator.line2 = 'ERROR'
+        calculator.main()
     def screenset(screen):
         calculator.focus = 1
         calculator.screen = str(screen)
@@ -51,8 +53,6 @@ class calculator():
     def adjust(direction):
         if direction == 'S' and calculator.focus <= 2: calculator.focus += 1
         elif direction == 'N' and calculator.focus >= 2: calculator.focus -= 1
-        if direction == 'E': calculator.focus += 1
-        elif direction == 'W': calculator.focus -= 1
         calculator.main()
     def main():
         global frame
@@ -101,6 +101,7 @@ class calculator():
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'tan', command = lambda: calculator.appendC('tan(', calculator.focus)).place(x = 145, y = 305)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'ord', command = lambda: calculator.appendC('ord(', calculator.focus)).place(x = 145, y = 335)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'chr', command = lambda: calculator.appendC('chr(', calculator.focus)).place(x = 145, y = 365)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'green', activeforeground = 'white', width = 5, borderwidth = 0, command = lambda: calculator.solve(), text = 'SOLVE').place(x = 250, y = 365)
         Canvas(base, highlightthickness = 0, bg = 'gray80', width = 290, height = 200).place(x = 5, y = 395)
         
 calculator.begin()
