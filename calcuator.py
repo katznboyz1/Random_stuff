@@ -24,11 +24,14 @@ class calculator():
     line1 = ''
     line2 = ''
     line3 = ''
+    ans = 0
     others = {'MODE':'standard', 'FLOAT':8}
     screen = 'main'
     focus = 1
     def solve():
-        try: exec(str('calculator.line2 = ' + str(calculator.line1)))
+        try:
+            exec(str('calculator.line2 = ' + str(calculator.line1)))
+            calculator.ans = calculator.line2
         except: calculator.line2 = 'ERROR'
         calculator.main()
     def screenset(screen):
@@ -101,8 +104,10 @@ class calculator():
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'tan', command = lambda: calculator.appendC('tan(', calculator.focus)).place(x = 145, y = 305)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'pi', command = lambda: calculator.appendC('3.141592653589793', calculator.focus)).place(x = 145, y = 335)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'sqrt', command = lambda: calculator.appendC('sqrt(', calculator.focus)).place(x = 145, y = 365)
+        Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', borderwidth = 0, width = 3, text = 'ans', command = lambda: calculator.appendC('calculator.ans', calculator.focus)).place(x = 180, y = 365)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'green', activeforeground = 'white', width = 5, borderwidth = 0, command = lambda: calculator.solve(), text = 'SOLVE').place(x = 250, y = 365)
         Canvas(base, highlightthickness = 0, bg = 'gray80', width = 290, height = 200).place(x = 5, y = 395)
+        Label(base, font = 'Calibri 8', text = 'Equation Graphing Area:', bg = 'gray80', fg = 'black').place(x = 5, y = 395)
         
 calculator.begin()
 calculator.main()
