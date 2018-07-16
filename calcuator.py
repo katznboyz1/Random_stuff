@@ -1,5 +1,7 @@
 #GRAPHING CALCULATOR SCRIPT COPYLEFT HARRISON LINDGREN <harrison.lindgren@gmail.com>
 
+#DOES NOT WRITE LINEAR TO GRID YET
+
 from tkinter import *
 import math, random
 from math import *
@@ -12,6 +14,8 @@ base.configure(bg = 'gray')
 
 frame = Frame(base, highlightthickness = 0, width = 300, height = 205, bg = 'gray')
 frame.place(x = 0, y = 0)
+grid = Canvas(base, bg = 'gray80', highlightthickness = 1, width = 280, height = 165)
+grid.place(x = 10, y = 425)
 
 def trim(string):
     new = ''
@@ -28,6 +32,7 @@ class calculator():
     others = {'MODE':'standard', 'FLOAT':8}
     screen = 'main'
     focus = 1
+    LIN_EQ = 'y = x'
     def solve():
         try:
             exec(str('calculator.line2 = ' + str(calculator.line1)))
@@ -57,19 +62,38 @@ class calculator():
         if direction == 'S' and calculator.focus <= 2: calculator.focus += 1
         elif direction == 'N' and calculator.focus >= 2: calculator.focus -= 1
         calculator.main()
+    def eval_linear():
+        linear = str(calculator.LIN_EQ)
+        x = 0
+        y = 0
+        x2 = 0
+        y2 = 0
+        if 'y = ' in linear:
+            for _ in range(-140, 140):
+                x = _
+                exec(linear)
+                grid.create_line(x, y, x2, y2, fill = 'black')
+                x2 = x
+                y2 = y
+                print (y, x, x2, y2)
     def main():
-        global frame
+        global frame, lin_eq
+        lin_eq.destroy()
+        lin_eq = Button(base, bg = 'gray80', text = str(calculator.LIN_EQ), font = 'Calibri 8', activebackground = 'green', activeforeground = 'black', fg = 'black', borderwidth = 0, command = lambda: calculator.eval_linear())
+        lin_eq.place(x = 200, y = 395)
         frame.destroy()
         frame = Frame(base, highlightthickness = 0, width = 300, height = 205, bg = 'gray')
         frame.place(x = 0, y = 0)
         Canvas(frame, width = 290, height = 200, bg = 'black', highlightthickness = 0).place(x = 5, y = 5)
         Canvas(frame, width = 290, height = 30, bg = 'gray30', highlightthickness = 0).place(x = 5, y = 5)
-        if calculator.screen == 'main':
+        if calculator.screen == 'main' and calculator.focus <= 2 and calculator.focus >= 0 and calculator.focus != 'menu':
             Label(frame, font = 'Calibri 10', text = calculator.line1, bg = 'black', fg = 'white').place(x = 10, y = 60)
             Label(frame, font = 'Calibri 10', text = calculator.line2, bg = 'black', fg = 'white').place(x = 10, y = 80)
             Label(frame, font = 'Calibri 10', text = calculator.line3, bg = 'black', fg = 'white').place(x = 10, y = 100)
             Label(frame, font = 'Calibri 10', text = calculator.others, bg = 'gray30', fg = 'black').place(x = 10, y = 10)
             Label(frame, font = 'Calibri 10', text = '<---', bg = 'black', fg = 'white').place(x = 270, y = 60 + ((calculator.focus - 1) * 20))
+        else:
+            Label(frame, text = 'FOCUS: GRAPH', bg = 'gray30', fg = 'black').place(x = 10, y = 10)
     def begin():
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', width = 5, borderwidth = 0, command = lambda: calculator.screenset('settings'), text = 'MENU').place(x = 5, y = 215)
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'gray12', activeforeground = 'white', width = 5, borderwidth = 0, command = lambda: calculator.screenset('main'), text = 'BACK').place(x = 95, y = 215)
@@ -108,7 +132,20 @@ class calculator():
         Button(base, bg = 'gray12', fg = 'white', activebackground = 'green', activeforeground = 'white', width = 5, borderwidth = 0, command = lambda: calculator.solve(), text = 'SOLVE').place(x = 250, y = 365)
         Canvas(base, highlightthickness = 0, bg = 'gray80', width = 290, height = 200).place(x = 5, y = 395)
         Label(base, font = 'Calibri 8', text = 'Equation Graphing Area:', bg = 'gray80', fg = 'black').place(x = 5, y = 395)
-        
+        grid = Canvas(base, bg = 'gray80', highlightthickness = 1, width = 280, height = 165)
+        grid.place(x = 10, y = 425)
+        grid.create_line(140, 0, 140, 165, fill = 'black')
+        grid.create_line(0, (165 / 2), 280, (165 / 2), fill = 'black')
+        lin_eq = Button(base, bg = 'gray80', text = str(calculator.LIN_EQ), font = 'Calibri 8', activebackground = 'green', activeforeground = 'black', fg = 'black', borderwidth = 0, command = lambda: calculator.eval_linear())
+        lin_eq.place(x = 200, y = 395)
+
+grid = Canvas(base, bg = 'gray80', highlightthickness = 1, width = 280, height = 165)
+grid.place(x = 10, y = 425)
+grid.create_line(140, 0, 140, 165, fill = 'black')
+grid.create_line(0, (165 / 2), 280, (165 / 2), fill = 'black')
+lin_eq = Label(base, bg = 'gray80', text = str(calculator.LIN_EQ), font = 'Calibri 8')
+lin_eq.place(x = 200, y = 395)
+      
 calculator.begin()
 calculator.main()
 base.mainloop()
