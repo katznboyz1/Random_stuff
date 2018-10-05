@@ -1,7 +1,7 @@
 try:
     import random
 except ImportError as err:
-    print ('\nModule "k_encode" could not load dependency "random". Error is as follows:\n\n{}\n'.format(str(err)))
+    print ('\nModule "encodelib.py" could not load dependency "random". Error is as follows:\n\n{}\n'.format(str(err)))
 
 class encode():
     class tools():
