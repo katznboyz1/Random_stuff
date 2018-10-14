@@ -53,7 +53,7 @@ class encode():
                         if encode.using_key.indexesForCharsUsingKey[char2] == int(encode.tools.getIndex(key.split(' '), char)) - 1:
                             c2 = char2
                             newstring = str(newstring) + str(c2)
-            except IOError:
+            except:
                 print ('Invalid key')
                 return 'Invalid key'
             return newstring
