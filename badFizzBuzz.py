@@ -14,5 +14,3 @@ def fizbUZZ(miniume, maxemum):
         else:
             _______________________ = _______________________ + '\n' + str(___(str(___(str(___(str(___(____________________________________________)))))))) #need to make sure is char
     return _______________________
-
-print(fizbUZZ(0, 100))
